@@ -6,16 +6,11 @@ import org.electricboy6.rr.Path;
 
 public class Test {
     public static void main(String[] args) {
-        Path path = new Path(new Point2d(0, 0, 0))
-                .addControlPoint(new Point2d(10, 3, 0))
+        Path path = new Path(new Point2d(0, 0, 12), new Point2d(10,-30, 90))
+                .addControlPoint(new Point2d(10, 3))
+                .addControlPoint(new Point2d(4, 6))
+                .addWaypoint(new Point2d(5, 2))
                 .build();
-        for (double i = 0; i < 1; i+=0.1) {
-            System.out.println(DriveControls.accel(10, 0, i));
-        }
-        System.out.println(10);
-        for (double i = 0; i < 1; i+=0.1) {
-            System.out.println(DriveControls.decel(0, 10, i));
-        }
-        System.out.println(0);
+        DriveControls.followPath(path);
     }
 }
