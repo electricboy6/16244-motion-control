@@ -30,24 +30,15 @@ public class Path {
         path = pathInitializer;
     }
 
-    /**
-     * Make sure the waypoint is close to the natural path of the curve, otherwise the robot will not follow it correctly
-     */
-    public Path addWaypoint(Point2d point) {
-        waypoints.add(point);
-        return this;
-    }
     public Path addControlPoint(Point2d point) {
         controlPoints.add(controlPoints.size(), point);
         return new Path(this.startPoint, this.endPoint, this.controlPoints, this.waypoints);
     }
     public Path build() {
-        int j = 1;
-        path.add(0, startPoint);
-        for(float i = 0; i < 1;) {
-            path.add(j, Bezier.bezierNew(startPoint, controlPoints.get(0), controlPoints.get(1), endPoint, i).setHeading(lerp(startPoint.getHeading(), endPoint.getHeading(), i)));
+        int j = 0;
+        for(double t = 0; t < 1; t+=0.005) {
+            path.add(j, Bezier.bezierNew(startPoint, controlPoints.get(0), controlPoints.get(1), endPoint, t).setHeading(lerp(startPoint.getHeading(), endPoint.getHeading(), t)));
             j++;
-            i+= DriveConstants.PATH_COMPUTE_ACCURACY;
         }
         path.add(j, endPoint);
         return new Path(startPoint, endPoint, controlPoints, waypoints, path);

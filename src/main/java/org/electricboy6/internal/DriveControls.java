@@ -13,12 +13,20 @@ public class DriveControls {
     private static double decel(double target, double current, double t) {
         return interpolate(current, target, t);
     }
-    private static double[] inverseKinematics(double xTarget, double yTarget) {
-        double frontLeft = 0;
-        double frontRight = 0;
-        double rearLeft = 0;
-        double rearRight = 0;
+    private static double[] inverseKinematics(double vf, double vs, double w) {
+        /*
+         vf denotes the forward velocity of the robot, relative to itself.
+         vs denotes the strafe (sideways) velocity of the robot, relative to itself.
+         w denotes the rotational velocity of the robot in radians/second (positive means counterclockwise when viewed from above)
+        */
+        double frontLeft = vf - vs - (DriveConstants.TRACK_WIDTH * w);
+        double frontRight = vf + vs + (DriveConstants.TRACK_WIDTH * w);
+        double rearLeft = vf + vs - (DriveConstants.TRACK_WIDTH * w);
+        double rearRight = vf - vs + (DriveConstants.TRACK_WIDTH * w);
         return new double[]{frontLeft, frontRight, rearLeft, rearRight};
+    }
+    private static double[] localizationKinematics(double horizontalEncoder, double perpendicularEncoder, double heading) {
+        return new double[]{};
     }
     public static void followPath(Path path) {
         System.out.println(path.path);
