@@ -26,7 +26,7 @@ public class DriveControls {
         return new double[]{frontLeft, frontRight, rearLeft, rearRight};
     }
     private static double[] localizationKinematics(double horizontalEncoder, double perpendicularEncoder, double heading) {
-        return new double[]{};
+        return new double[0];
     }
     public static void followPath(Path path) {
         System.out.println(path.path);
