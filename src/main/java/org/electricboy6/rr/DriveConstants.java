@@ -10,7 +10,9 @@ public class DriveConstants {
     // note: the default accuracy is more than enough.
 
     // Robot configuration
-    public static final double TRACK_WIDTH = 10; // wheel to wheel, in inches
+    private static final double WHEEL_RADIUS = 96; // normal-sized Gobilda mecanum wheels
+    private static final double TRACKING_WHEEL_RADIUS = 48; // Gobilda tracking wheel pods
+    public static final double TRACK_WIDTH = 10; // center of wheel to center of wheel, in inches
     public static final double STRAFE_MULTIPLIER = 1.1; // default should be good
 
 }
