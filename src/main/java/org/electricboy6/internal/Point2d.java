@@ -14,6 +14,11 @@ public class Point2d {
         internalY = y;
         internalHeading = 0;
     }
+    public Point2d() {
+        internalX = 0;
+        internalY = 0;
+        internalHeading = 0;
+    }
     public double getHeading() {
         return internalHeading;
     }
