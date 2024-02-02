@@ -2,6 +2,7 @@ package org.electricboy6.internal;
 
 import org.electricboy6.rr.DriveConstants;
 import org.electricboy6.rr.Path;
+import org.electricboy6.internal.MathUtils;
 
 public class DriveControls {
     private static double interpolate(double min, double max, double range) {
@@ -26,6 +27,9 @@ public class DriveControls {
         return new double[]{frontLeft, frontRight, rearLeft, rearRight};
     }
     private static double[] localizationKinematics(double horizontalEncoder, double perpendicularEncoder, double heading) {
+        double deltaX = MathUtils.twoXtwoDeterminate(new double[2][2]);
+        double deltaY = MathUtils.twoXtwoDeterminate(new double[2][2]);
+        double deltaTheta = MathUtils.twoXtwoDeterminate(new double[2][2]);
         return new double[0];
     }
     public static void followPath(Path path) {
