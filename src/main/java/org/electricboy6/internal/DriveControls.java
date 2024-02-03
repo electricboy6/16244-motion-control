@@ -2,7 +2,14 @@ package org.electricboy6.internal;
 
 import org.electricboy6.rr.DriveConstants;
 import org.electricboy6.rr.Path;
-import org.electricboy6.internal.MathUtils;
+
+import static org.electricboy6.rr.DriveConstants.TRACK_WIDTH;
+import static org.electricboy6.rr.DriveConstants.WHEEL_RADIUS;
+import static org.electricboy6.rr.DriveConstants.TRACKING_WHEEL_1;
+import static org.electricboy6.rr.DriveConstants.TRACKING_WHEEL_2;
+
+import static org.electricboy6.internal.MathUtils.twoXtwoDeterminate;
+import static org.electricboy6.internal.MathUtils.matrixMultByDouble;
 
 public class DriveControls {
     private static double interpolate(double min, double max, double range) {
@@ -20,17 +27,24 @@ public class DriveControls {
          vs denotes the strafe (sideways) velocity of the robot, relative to itself.
          w denotes the rotational velocity of the robot in radians/second (positive means counterclockwise when viewed from above)
         */
-        double frontLeft = vf - vs - (DriveConstants.TRACK_WIDTH * w);
-        double frontRight = vf + vs + (DriveConstants.TRACK_WIDTH * w);
-        double rearLeft = vf + vs - (DriveConstants.TRACK_WIDTH * w);
-        double rearRight = vf - vs + (DriveConstants.TRACK_WIDTH * w);
+        double frontLeft = vf - vs - (TRACK_WIDTH * w);
+        double frontRight = vf + vs + (TRACK_WIDTH * w);
+        double rearLeft = vf + vs - (TRACK_WIDTH * w);
+        double rearRight = vf - vs + (TRACK_WIDTH * w);
         return new double[]{frontLeft, frontRight, rearLeft, rearRight};
     }
-    private static double[] localizationKinematics(double horizontalEncoder, double perpendicularEncoder, double heading) {
-        double deltaX = MathUtils.twoXtwoDeterminate(new double[2][2]);
-        double deltaY = MathUtils.twoXtwoDeterminate(new double[2][2]);
-        double deltaTheta = MathUtils.twoXtwoDeterminate(new double[2][2]);
-        return new double[0];
+    private static double[] encoderKinematics(double horizontalEncoder, double perpendicularEncoder, double heading) {
+        double wheel1x = TRACKING_WHEEL_1.getX();
+        double wheel1y = TRACKING_WHEEL_1.getY();
+        double wheel1heading = TRACKING_WHEEL_1.getHeading();
+        double wheel2x = TRACKING_WHEEL_2.getX();
+        double wheel2y = TRACKING_WHEEL_2.getY();
+        double wheel2heading = TRACKING_WHEEL_2.getHeading();
+
+        double deltaX = twoXtwoDeterminate(new double[2][2]);
+        double deltaY = twoXtwoDeterminate(new double[2][2]);
+        double deltaTheta = twoXtwoDeterminate(new double[2][2]);
+        return new double[]{deltaX, deltaY, deltaTheta};
     }
     public static void followPath(Path path) {
         System.out.println(path.path);
