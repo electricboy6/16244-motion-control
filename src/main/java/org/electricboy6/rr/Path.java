@@ -6,7 +6,7 @@ import org.electricboy6.internal.Point2d;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.electricboy6.rr.DriveConstants.PATH_COMPUTE_ACCURACY;
+import static org.electricboy6.rr.Constants.PATH_COMPUTE_ACCURACY;
 
 public class Path {
     private final Point2d startPoint;

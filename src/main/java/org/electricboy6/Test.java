@@ -11,7 +11,7 @@ public class Test {
                 .setControlPointOne(new Point2d(10, -10))
                 .setControlPointTwo(new Point2d(4, 6))
                 .build();
-        //DriveControls.followPath(path);
+        DriveControls.followPath(path);
         //Path.crashSystem();
         double[][] test = new double[2][2];
         test[0] = new double[]{1, 3};

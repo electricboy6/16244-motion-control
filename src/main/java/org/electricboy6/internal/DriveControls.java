@@ -1,22 +1,20 @@
 package org.electricboy6.internal;
 
-import org.electricboy6.rr.DriveConstants;
+import org.electricboy6.rr.Constants;
 import org.electricboy6.rr.Path;
 
-import static org.electricboy6.rr.DriveConstants.TRACK_WIDTH;
-import static org.electricboy6.rr.DriveConstants.WHEEL_RADIUS;
-import static org.electricboy6.rr.DriveConstants.TRACKING_WHEEL_1;
-import static org.electricboy6.rr.DriveConstants.TRACKING_WHEEL_2;
+import static org.electricboy6.rr.Constants.TRACK_WIDTH;
+import static org.electricboy6.rr.Constants.TRACKING_WHEEL_1;
+import static org.electricboy6.rr.Constants.TRACKING_WHEEL_2;
 
 import static org.electricboy6.internal.MathUtils.twoXtwoDeterminate;
-import static org.electricboy6.internal.MathUtils.matrixMultByDouble;
 
 public class DriveControls {
     private static double interpolate(double min, double max, double range) {
-        return (min + ((max - min) * range * (range / DriveConstants.INTERPOLATE_FACTOR)));
+        return (min + ((max - min) * range * (range / Constants.INTERPOLATE_FACTOR)));
     }
     private static double accel(double target, double current, double t) {
-        return Math.min(interpolate(current, target, t), DriveConstants.MAX_SPEED);
+        return Math.min(interpolate(current, target, t), Constants.MAX_SPEED);
     }
     private static double decel(double target, double current, double t) {
         return interpolate(current, target, t);
