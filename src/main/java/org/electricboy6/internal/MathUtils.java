@@ -13,4 +13,11 @@ public class MathUtils {
         }
         return input;
     }
+    public static double threeXthreeDeterminate(double[][] input) {
+        return ((0
+                        + (input[0][0] * twoXtwoDeterminate(new double[][]{{0, 0}, {0, 0}}))
+                        - (input[1][0] * twoXtwoDeterminate(new double[][]{{0, 0}, {0, 0}}))
+                        + (input[2][0] * twoXtwoDeterminate(new double[][]{{0, 0}, {0, 0}}))
+                ));
+    }
 }
