@@ -1,5 +1,7 @@
 package org.electricboy6.internal;
 
+import org.electricboy6.main.Point2d;
+
 public class Bezier {
     private static Point2d lerp(double x, double y, double w, double z, double t) {
         return new Point2d(

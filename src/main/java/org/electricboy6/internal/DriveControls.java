@@ -1,17 +1,18 @@
 package org.electricboy6.internal;
 
-import org.electricboy6.rr.Constants;
-import org.electricboy6.rr.Path;
+import org.electricboy6.main.Constants;
+import org.electricboy6.main.Path;
+import org.electricboy6.main.PathSequence;
 
-import static org.electricboy6.rr.Constants.TRACK_WIDTH;
-import static org.electricboy6.rr.Constants.TRACKING_WHEEL_1;
-import static org.electricboy6.rr.Constants.TRACKING_WHEEL_2;
+import static org.electricboy6.main.Constants.TRACK_WIDTH;
+import static org.electricboy6.main.Constants.TRACKING_WHEEL_1;
+import static org.electricboy6.main.Constants.TRACKING_WHEEL_2;
 
 import static org.electricboy6.internal.MathUtils.twoXtwoDeterminate;
 
 public class DriveControls {
     private static double interpolate(double min, double max, double range) {
-        return (min + ((max - min) * range * (range / Constants.INTERPOLATE_FACTOR)));
+        return (min + ((max - min) * range * (range / 1)));
     }
     private static double accel(double target, double current, double t) {
         return Math.min(interpolate(current, target, t), Constants.MAX_SPEED);
@@ -45,6 +46,9 @@ public class DriveControls {
         return new double[]{deltaX, deltaY, deltaTheta};
     }
     public static void followPath(Path path) {
-        System.out.println(path.path);
+        System.out.println(path.trajectory);
+    }
+    public static void followPathSequence(PathSequence path) {
+        System.out.println();
     }
 }

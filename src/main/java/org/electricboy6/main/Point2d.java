@@ -1,4 +1,4 @@
-package org.electricboy6.internal;
+package org.electricboy6.main;
 
 public class Point2d {
     private final double internalX;

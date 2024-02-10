@@ -1,10 +1,7 @@
-package org.electricboy6.rr;
-
-import org.electricboy6.internal.Point2d;
+package org.electricboy6.main;
 
 public class Constants {
     // Drive constraints
-    public static final double INTERPOLATE_FACTOR = 1.05; // this changes the acceleration and deceleration rate. A little goes a long way.
     private static final double MAX_ACCEL = 20; // inches / second
     public static final double MAX_SPEED = 40; // set this to about 90% of your robot's capabilities on a lower battery level
 
