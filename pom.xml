@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.electricboy6</groupId>
-    <artifactId>rr-myversion</artifactId>
+    <artifactId>ftcmotionlib</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
