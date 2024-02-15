@@ -15,7 +15,9 @@ public class MathUtils {
     }
     public static double[][] inverseOf3x3Matrix(double[][] input) {
         double[][] output = new double[3][3];
+
         double determinant = threeXthreeDeterminate(input);
+
         output[0][0] = ((input[1][1] * input[2][2]) - (input[1][2] * input[2][1]));
         output[0][1] = -((input[0][1] * input[2][2]) - (input[0][2] * input[2][1]));
         output[0][2] = ((input[0][1] * input[1][2]) - (input[0][2] * input[1][1]));
@@ -27,12 +29,8 @@ public class MathUtils {
         output[2][0] = ((input[1][0] * input[2][1]) - (input[1][1] * input[2][0]));
         output[2][1] = -((input[0][0] * input[2][1]) - (input[0][1] * input[2][0]));
         output[2][2] = ((input[0][0] * input[1][1]) - (input[0][1] * input[1][0]));
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                output[i][j] *= 1 / determinant;
-            }
-        }
-        return output;
+
+        return matrixMultByDouble(output, 1 / determinant);
     }
     public static double threeXthreeDeterminate(double[][] input) {
         return ((0
