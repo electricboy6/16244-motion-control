@@ -22,15 +22,16 @@ public class Test {
                 .addPath(new Path(new Point2d(2, 6, 0), new Point2d(20, -6, 90))
                         .setControlPointOne(new Point2d(23, 54)), true)
                 .build();
-        DriveControls.followPathSequence(pathSequence);
+        //DriveControls.followPathSequence(pathSequence);
 
         double[][] test = new double[3][3];
+        double[] test2 = new double[]{1, 2, 3};
         test[0] = new double[]{1, 2, 1};
         test[1] = new double[]{4, 5, 6};
         test[2] = new double[]{7, 8, 9};
         //System.out.println(MathUtils.twoXtwoDeterminate(test));
         System.out.println(MathUtils.threeXthreeDeterminate(test));
-        test = MathUtils.inverseOf3x3Matrix(test);
+        //test = MathUtils.threeXthreeTimesThreexOne(test, test2);
         for(double[] temp : test) {
             for (double temp2 : temp)
                 System.out.print(temp2 + ", ");

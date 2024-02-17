@@ -15,10 +15,21 @@ public class MathUtils {
         }
         return input;
     }
+    public static double[] threeXthreeTimesThreexOne(double[][] threeXthree, double[] threeXone) {
+        return new double[]{
+                threeXone[0] * threeXthree[0][0] + threeXone[1] * threeXthree[0][1] + threeXone[2] * threeXthree[0][2],
+                threeXone[0] * threeXthree[1][0] + threeXone[1] * threeXthree[1][1] + threeXone[2] * threeXthree[1][2],
+                threeXone[0] * threeXthree[2][0] + threeXone[1] * threeXthree[2][1] + threeXone[2] * threeXthree[2][2]
+        };
+    }
     public static double[][] inverseOf3x3Matrix(double[][] input) {
         double[][] output = new double[3][3];
 
         double determinant = threeXthreeDeterminate(input);
+        if(determinant == 0) {
+            System.err.println("Matrix cannot be inverted!");
+            return null;
+        }
 
         output[0][0] = ((input[1][1] * input[2][2]) - (input[1][2] * input[2][1]));
         output[0][1] = -((input[0][1] * input[2][2]) - (input[0][2] * input[2][1]));
@@ -43,5 +54,11 @@ public class MathUtils {
     }
     public static Vector2d xvelAndYvelToVector(double xvel, double yvel) {
         return new Vector2d(Math.atan2(xvel, yvel) * 180 / Math.PI, Math.sqrt((xvel * xvel) + (yvel * yvel)));
+    }
+    public static double sin(double input) {
+        return Math.sin(input);
+    }
+    public static double cos(double input) {
+        return Math.cos(input);
     }
 }
