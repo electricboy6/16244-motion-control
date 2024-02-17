@@ -53,7 +53,13 @@ public class MathUtils {
                 ));
     }
     public static Vector2d xvelAndYvelToVector(double xvel, double yvel) {
-        return new Vector2d(Math.atan2(xvel, yvel) * 180 / Math.PI, Math.sqrt((xvel * xvel) + (yvel * yvel)));
+        return new Vector2d(Math.toDegrees(Math.atan2(xvel, yvel)), Math.sqrt((xvel * xvel) + (yvel * yvel)));
+    }
+    public static double[] vectorToXvelAndYvel(Vector2d input) {
+        return new double[]{
+                input.getMagnitude() * sin(input.getDirection()),
+                input.getMagnitude() * cos(input.getDirection())
+        };
     }
     public static double sin(double input) {
         return Math.sin(input);

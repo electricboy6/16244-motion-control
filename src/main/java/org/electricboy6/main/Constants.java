@@ -16,7 +16,9 @@ public class Constants {
     public static final double WHEEL_RADIUS = 96; // normal-sized Gobilda mecanum wheels
     public static final double TRACKING_WHEEL_RADIUS = 48; // Gobilda tracking wheel pods
     public static final double TRACK_WIDTH = 10; // center of wheel to center of wheel, in inches
+    public static final double WHEELBASE = 20; // center of wheel to center of wheel, in inches
     public static final double STRAFE_MULTIPLIER = 1.1; // default should be good
-    public static final Point2d TRACKING_WHEEL_1 = new Point2d(1, -5, 90); // from center of rotation
-    public static final Point2d TRACKING_WHEEL_2 = new Point2d(-2, 5, 0); // same here
+    public static final Point2d TRACKING_WHEEL_1 = new Point2d(1, -5, 90); // horizontal encoder 1
+    public static final Point2d TRACKING_WHEEL_2 = new Point2d(-2, 5, 0); // perpendicular encoder
+    public static final Point2d TRACKING_WHEEL_3 = new Point2d(-2, -5, 90); // horizontal encoder 2 (if using 3 wheel, else set it to null)
 }
