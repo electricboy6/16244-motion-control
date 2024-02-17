@@ -2,12 +2,15 @@ package org.electricboy6.main;
 
 public class Constants {
     // Drive constraints
-    private static final double MAX_ACCEL = 20; // inches / second
-    public static final double MAX_SPEED = 40; // set this to about 90% of your robot's capabilities on a lower battery level
+    public static final double MAX_ACCEL = 10; // inches / second / second
+    public static final double MAX_ANG_ACCEL = 20; // degrees / second / second
+    public static final double MAX_VELOCITY = 40; // set this to about 90% of your robot's capabilities on a lower battery level
+    public static final double MAX_ANG_VELOCITY = 180; // degrees / second
 
     // Path options
-    public static final float PATH_COMPUTE_ACCURACY = 1f / 500f;
-    // Don't change this unless you have to
+    public static final double PATH_COMPUTE_ACCURACY = 1d / 100d;
+    // Don't change this unless you need higher path accuracy
+    public static final double PATH_LOOKAHEAD_PERCENTAGE =
 
     // Robot configuration
     public static final double WHEEL_RADIUS = 96; // normal-sized Gobilda mecanum wheels

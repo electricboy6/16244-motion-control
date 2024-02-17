@@ -12,18 +12,15 @@ import static org.electricboy6.internal.MathUtils.twoXtwoDeterminate;
 
 public class DriveControls {
     private static double interpolate(double min, double max, double range) {
-        return (min + ((max - min) * range * (range / 1)));
-    }
-    private static double accel(double target, double current, double t) {
-        return Math.min(interpolate(current, target, t), Constants.MAX_SPEED);
+        return (min + ((max - min) * range));
     }
     private static double decel(double target, double current, double t) {
         return interpolate(current, target, t);
     }
     private static double[] inverseKinematics(double vf, double vs, double w) {
         /*
-         vf denotes the forward velocity of the robot, relative to itself.
-         vs denotes the strafe (sideways) velocity of the robot, relative to itself.
+         vf denotes the forward velocity of the robot
+         vs denotes the strafe (sideways) velocity of the robot
          w denotes the rotational velocity of the robot in radians/second (positive means counterclockwise when viewed from above)
         */
         double frontLeft = vf - vs - (TRACK_WIDTH * w);
@@ -49,6 +46,6 @@ public class DriveControls {
         System.out.println(path.trajectory);
     }
     public static void followPathSequence(PathSequence path) {
-        System.out.println();
+        System.out.println(path.trajectory);
     }
 }

@@ -1,5 +1,7 @@
 package org.electricboy6.internal;
 
+import org.electricboy6.main.Vector2d;
+
 public class MathUtils {
     public static double twoXtwoDeterminate(double[][] input) {
         if(!(input.length == 2 && input[0].length == 2)) throw new IllegalArgumentException();
@@ -38,5 +40,8 @@ public class MathUtils {
                         - (input[0][1] * twoXtwoDeterminate(new double[][]{{input[1][0], input[1][2]}, {input[2][0], input[2][2]}}))
                         + (input[0][2] * twoXtwoDeterminate(new double[][]{{input[1][0], input[1][1]}, {input[2][0], input[2][1]}}))
                 ));
+    }
+    public static Vector2d xvelAndYvelToVector(double xvel, double yvel) {
+        return new Vector2d(Math.atan2(xvel, yvel) * 180 / Math.PI, Math.sqrt((xvel * xvel) + (yvel * yvel)));
     }
 }
