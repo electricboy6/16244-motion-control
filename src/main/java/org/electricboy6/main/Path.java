@@ -10,12 +10,12 @@ import static org.electricboy6.main.Constants.PATH_COMPUTE_ACCURACY;
 public class Path {
     public final Point2d startPoint;
     public final Point2d endPoint;
-    private List<Point2d> controlPoints = new ArrayList<>();
+    public final ArrayList<Point2d> controlPoints = new ArrayList<>();
     {
         controlPoints.add(new Point2d());
         controlPoints.add(new Point2d());
     }
-    public List<Point2d> trajectory = new ArrayList<>();
+    public ArrayList<Point2d> trajectory = new ArrayList<>();
     public Path(Point2d start, Point2d end) {
         startPoint = start;
         endPoint = end;
