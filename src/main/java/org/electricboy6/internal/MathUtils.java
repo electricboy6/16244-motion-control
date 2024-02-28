@@ -58,14 +58,11 @@ public class MathUtils {
     public static Vector2d xvelAndYvelToVector(double xvel, double yvel) {
         return new Vector2d(Math.toDegrees(Math.atan2(xvel, yvel)), Math.sqrt((xvel * xvel) + (yvel * yvel)));
     }
-    public static double[] vectorToXvelAndYvel(Vector2d input) {
-        return new double[]{
+    public static Point2d vectorToPoint2d(Vector2d input) {
+        return new Point2d(
                 input.getMagnitude() * sin(input.getDirection()),
                 input.getMagnitude() * cos(input.getDirection())
-        };
-    }
-    public static Point2d purePursuit(Point2d startPos, double lookahead, ArrayList<Point2d> path) {
-        return null;
+        );
     }
     public static double sin(double input) {
         return Math.sin(input);

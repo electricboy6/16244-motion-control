@@ -3,7 +3,6 @@ package org.electricboy6.internal;
 import org.electricboy6.main.Path;
 import org.electricboy6.main.PathSequence;
 
-import static org.electricboy6.internal.MathUtils.twoXtwoDeterminate;
 import static org.electricboy6.internal.MathUtils.sin;
 import static org.electricboy6.internal.MathUtils.cos;
 import static org.electricboy6.main.Constants.*;

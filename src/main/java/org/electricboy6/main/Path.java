@@ -15,7 +15,7 @@ public class Path {
         controlPoints.add(new Point2d());
         controlPoints.add(new Point2d());
     }
-    public ArrayList<Point2d> trajectory = new ArrayList<>();
+    public final ArrayList<Point2d> trajectory = new ArrayList<>();
     public Path(Point2d start, Point2d end) {
         startPoint = start;
         endPoint = end;
