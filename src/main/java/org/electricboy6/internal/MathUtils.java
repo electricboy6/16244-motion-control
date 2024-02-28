@@ -1,6 +1,9 @@
 package org.electricboy6.internal;
 
+import org.electricboy6.main.Point2d;
 import org.electricboy6.main.Vector2d;
+
+import java.util.ArrayList;
 
 public class MathUtils {
     public static double twoXtwoDeterminate(double[][] input) {
@@ -60,6 +63,9 @@ public class MathUtils {
                 input.getMagnitude() * sin(input.getDirection()),
                 input.getMagnitude() * cos(input.getDirection())
         };
+    }
+    public static Point2d purePursuit(Point2d startPos, double lookahead, ArrayList<Point2d> path) {
+        return null;
     }
     public static double sin(double input) {
         return Math.sin(input);

@@ -8,9 +8,10 @@ public class Constants {
     public static final double MAX_ANG_VELOCITY = 180; // degrees / second
 
     // Path options
-    public static final double PATH_COMPUTE_ACCURACY = 1d / 100d;
-    // Don't change this unless you need higher path accuracy
+    public static final double PATH_COMPUTE_ACCURACY = 1d / 50d;
+    // Don't change this unless told to
     public static final double PATH_LOOKAHEAD_PERCENTAGE = 7.5 / (1 / PATH_COMPUTE_ACCURACY);
+    // Changing this changes the amount of the path that is used for calculating
 
     // Robot configuration
     public static final double WHEEL_RADIUS = 96; // normal-sized Gobilda mecanum wheels

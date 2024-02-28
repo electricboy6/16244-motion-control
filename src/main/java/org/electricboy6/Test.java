@@ -14,7 +14,7 @@ public class Test {
                 //.setControlPointOne(new Point2d(10, -10))
                 //.setControlPointTwo(new Point2d(4, 6))
                 .build();
-        //DriveControls.followPath(path);
+        DriveControls.followPath(path);
 
         PathSequence pathSequence = new PathSequence()
                 .addPath(new Path(new Point2d(34, -12, -90), new Point2d(2, 6, 0))

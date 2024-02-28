@@ -67,12 +67,12 @@ public class DriveControls {
 
         double[] input = new double[]{horizontalEncoder, horizontalEncoder2, perpendicularEncoder};
 
-        double[][] systemOfEquasions = new double[3][3];
-        systemOfEquasions[0] = new double[]{cos(wheel1heading), sin(wheel1heading), (wheel1x * sin(wheel1heading)) - (wheel1y * cos(wheel1heading))};
-        systemOfEquasions[1] = new double[]{cos(wheel2heading), sin(wheel2heading), (wheel2x * sin(wheel2heading)) - (wheel2y * cos(wheel2heading))};
-        systemOfEquasions[2] = new double[]{cos(wheel3heading), sin(wheel3heading), (wheel3x * sin(wheel3heading)) - (wheel3y * cos(wheel3heading))};
+        double[][] systemOfEquations = new double[3][3];
+        systemOfEquations[0] = new double[]{cos(wheel1heading), sin(wheel1heading), (wheel1x * sin(wheel1heading)) - (wheel1y * cos(wheel1heading))};
+        systemOfEquations[1] = new double[]{cos(wheel2heading), sin(wheel2heading), (wheel2x * sin(wheel2heading)) - (wheel2y * cos(wheel2heading))};
+        systemOfEquations[2] = new double[]{cos(wheel3heading), sin(wheel3heading), (wheel3x * sin(wheel3heading)) - (wheel3y * cos(wheel3heading))};
 
-        double[][] invertedMatrix = MathUtils.inverseOf3x3Matrix(systemOfEquasions);
+        double[][] invertedMatrix = MathUtils.inverseOf3x3Matrix(systemOfEquations);
 
         assert invertedMatrix != null;
         double[] multipliedMatrix = MathUtils.threeXthreeTimesThreexOne(invertedMatrix, input);
