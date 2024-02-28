@@ -10,7 +10,7 @@ public class Constants {
     // Path options
     public static final double PATH_COMPUTE_ACCURACY = 1d / 50d;
     // Don't change this unless told to
-    public static final double PATH_LOOKAHEAD_PERCENTAGE = 7.5 / (1 / PATH_COMPUTE_ACCURACY);
+    public static final double PATH_LOOKAHEAD_PERCENTAGE = (10 * (1 / PATH_COMPUTE_ACCURACY)) * PATH_COMPUTE_ACCURACY;
     // Changing this changes the amount of the path that is used for calculating
 
     // Robot configuration
