@@ -17,12 +17,15 @@ public class Test {
         //DriveControls.followPath(path);
 
         PathSequence pathSequence = new PathSequence()
-                .addPath(new Path(new Point2d(34, -12, -90), new Point2d(2, 6, 0))
-                        .setControlPointOne(new Point2d(23, 54)), false)
-                .addPath(new Path(new Point2d(2, 6, 0), new Point2d(20, -6, 90))
-                        .setControlPointOne(new Point2d(23, 54)), true)
-                .build();
-        DriveControls.followPathSequence(pathSequence);
+                .addPath(new Path(new Point2d(-34, -12, -90), new Point2d(2, 6, 0))
+                        .setControlPointOne(new Point2d(3, -4))
+                        , false)
+                .addPath(new Path(new Point2d(2, 6, 0), new Point2d(20, 6, 90))
+                        .setControlPointOne(new Point2d(-2, 5))
+                        ,false)
+                .build()//;
+                .export("C:\\Users\\FIRSTUser\\Documents\\FTC\\python\\robotPosition.txt");
+        //DriveControls.followPathSequence(pathSequence);
 
     }
 }

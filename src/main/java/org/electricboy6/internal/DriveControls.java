@@ -41,11 +41,13 @@ public class DriveControls {
         double[][] systemOfEquations = new double[3][3];
         systemOfEquations[0] = new double[]{cos(wheel1heading), sin(wheel1heading), (wheel1x * sin(wheel1heading)) - (wheel1y * cos(wheel1heading))};
         systemOfEquations[1] = new double[]{cos(wheel2heading), sin(wheel2heading), (wheel2x * sin(wheel2heading)) - (wheel2y * cos(wheel2heading))};
-        systemOfEquations[2] = new double[]{0, 0, WHEEL_RADIUS};
+        systemOfEquations[2] = new double[]{0, 0, TRACKING_WHEEL_RADIUS};
 
         double[][] invertedMatrix = MathUtils.inverseOf3x3Matrix(systemOfEquations);
-
         assert invertedMatrix != null;
+
+        invertedMatrix = MathUtils.matrixMultByDouble(invertedMatrix, TRACKING_WHEEL_RADIUS);
+
         double[] multipliedMatrix = MathUtils.threeXthreeTimesThreexOne(invertedMatrix, input);
 
         double deltaX = multipliedMatrix[0];
