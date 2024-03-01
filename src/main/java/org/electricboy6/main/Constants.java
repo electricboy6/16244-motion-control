@@ -8,7 +8,7 @@ public class Constants {
     public static final double MAX_ANG_VELOCITY = 180; // degrees / second
 
     // Path options
-    public static final double PATH_COMPUTE_ACCURACY = 1d / 100d;
+    public static final double PATH_COMPUTE_ACCURACY = 1d / 20d;
     // Don't change this unless told to
     public static final double PATH_LOOKAHEAD_PERCENTAGE = (10d * (1 / PATH_COMPUTE_ACCURACY)) * PATH_COMPUTE_ACCURACY;
     // Changing this changes the amount of the path that is used for calculating the joining path
