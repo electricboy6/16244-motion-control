@@ -54,7 +54,8 @@ public class PathSequence {
             } else {
                 pathTrajectory.add(calcJoiningPath(pathTrajectory, t,
                         calcPathVector(originalTrajectory, false),
-                        calcPathVector(nextPathOriginalTrajectory, true), nextPath.startPoint));
+                        calcPathVector(nextPathOriginalTrajectory, true),
+                        nextPath.startPoint));
             }
             j++;
         }
@@ -65,7 +66,8 @@ public class PathSequence {
     private Point2d calcJoiningPath(ArrayList<Point2d> trajectory, double t, Vector2d thisPath, Vector2d nextPath, Point2d nextPathStart) {
         return bezier(trajectory.get(trajectory.size() - 1),
                 Point2dMath.add(vectorToPoint2d(thisPath), trajectory.get(trajectory.size() - 1)),
-                Point2dMath.add(vectorToPoint2d(nextPath), nextPathStart), nextPathStart, t);
+                Point2dMath.add(vectorToPoint2d(nextPath), nextPathStart),
+                nextPathStart, t);
     }
     private Vector2d calcPathVector(ArrayList<Point2d> trajectory, boolean start) {
         int percentage;
