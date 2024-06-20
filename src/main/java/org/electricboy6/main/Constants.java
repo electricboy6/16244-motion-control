@@ -8,10 +8,12 @@ public class Constants {
     public static final double MAX_ANG_VELOCITY = 180; // degrees / second
 
     // Path options
-    public static final double PATH_COMPUTE_ACCURACY = 1d / 20d;
+    public static final double PATH_COMPUTE_ACCURACY = 1d / (500d);
     // Don't change this unless told to
-    public static final double PATH_LOOKAHEAD_PERCENTAGE = (10d * (1 / PATH_COMPUTE_ACCURACY)) * PATH_COMPUTE_ACCURACY;
+    public static final double PATH_LOOKAHEAD_PERCENTAGE = (1 / PATH_COMPUTE_ACCURACY) * ((50) / 100d);// * (1 / PATH_COMPUTE_ACCURACY)) * PATH_COMPUTE_ACCURACY;
     // Changing this changes the amount of the path that is used for calculating the joining path
+    public static final int PATH_LOOKAHEAD_ROLLING_WINDOW_SIZE = (int) (((10d) / 100d) * PATH_LOOKAHEAD_PERCENTAGE);
+    // Changing this changes the number of steps ahead of the current point that are used to calculate the connecting path
 
     // Robot configuration
     public static final double WHEEL_RADIUS = 96; // normal-sized Gobilda mecanum wheels

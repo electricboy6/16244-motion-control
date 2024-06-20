@@ -1,5 +1,6 @@
 package org.electricboy6.internal;
 
+import org.electricboy6.main.Path;
 import org.electricboy6.main.Point2d;
 import org.electricboy6.main.Vector2d;
 
@@ -69,5 +70,63 @@ public class MathUtils {
     }
     public static double cos(double input) {
         return Math.cos(input);
+    }
+    public static double movingAverage(double[] input, int startPos, int windowSize) {
+        double output = 0;
+        for(int i = startPos; i < startPos + windowSize; i++) {
+            output += input[i];
+        }
+        output /= windowSize;
+        return output;
+    }
+    /*
+    * first derivative: slope of y / slope of x (using t in place of the bottom part of the slope formula)
+    * second derivative: slope of first derivative / slope of x
+    * */
+    public static double derivativeAtPointOfPath(Path targetPath, double targetT, double otherT) {
+        Point2d targetPoint = targetPath.calculateBezierPoint(targetT);
+        Point2d otherPoint = targetPath.calculateBezierPoint(otherT);
+        double y1 = targetPoint.getY();
+        double y2 = otherPoint.getY();
+        double x1 = targetPoint.getX();
+        double x2 = otherPoint.getX();
+        double ySlope = slope(new Point2d(targetT, y1), new Point2d(targetT, y2));
+        double xSlope = slope(new Point2d(targetT, x1), new Point2d(targetT, x2));
+        return ySlope / xSlope;
+    }
+    public static double derivativeAtPointOfPath(Path targetPath, double targetT) {
+        double otherT;
+        if(targetT > 0.999) {
+            otherT = targetT - 0.01;
+        } else {
+            otherT = targetT + 0.01;
+        }
+        return derivativeAtPointOfPath(targetPath, targetT, otherT);
+    }
+    public static double secondDerivativeAtPointOfPath(Path targetPath, double targetT) {
+        double otherT;
+        double otherOtherT;
+        if(targetT > 0.999) {
+            otherT = targetT - 0.01;
+            otherOtherT = otherT - 0.01;
+        } else {
+            otherT = targetT + 0.01;
+            otherOtherT = otherT + 0.01;
+        }
+        Point2d targetPoint = targetPath.calculateBezierPoint(targetT);
+        Point2d otherPoint = targetPath.calculateBezierPoint(otherT);
+        double y1 = targetPoint.getY();
+        double y2 = otherPoint.getY();
+        double x1 = targetPoint.getX();
+        double x2 = otherPoint.getX();
+        double ySlope = slope(new Point2d(targetT, y1), new Point2d(targetT, y2));
+        double xSlope = slope(new Point2d(targetT, x1), new Point2d(targetT, x2));
+        double firstDerivative = ySlope / xSlope;
+        double otherDerivative = derivativeAtPointOfPath(targetPath, targetT, otherOtherT);
+        double derivativeSlope = slope(new Point2d(targetT, firstDerivative), new Point2d(otherT, otherDerivative));
+        return derivativeSlope / xSlope;
+    }
+    private static double slope(Point2d point1, Point2d point2) {
+        return (point1.getY() - point2.getY()) / (point1.getX() - point2.getX());
     }
 }

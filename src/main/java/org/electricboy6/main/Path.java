@@ -3,13 +3,13 @@ package org.electricboy6.main;
 import org.electricboy6.internal.Bezier;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.electricboy6.main.Constants.PATH_COMPUTE_ACCURACY;
 
 public class Path {
     public final Point2d startPoint;
     public final Point2d endPoint;
+    private boolean built = false;
     public final ArrayList<Point2d> controlPoints = new ArrayList<>();
     {
         controlPoints.add(new Point2d());
@@ -37,9 +37,16 @@ public class Path {
             j++;
         }
         trajectory.add(j, endPoint);
+        built = true;
         return this;
     }
     private double lerp(double min, double max, double t) {
         return (min + ((max - min) * t * t));
+    }
+    public Point2d calculateBezierPoint(double t) {
+        return Bezier.bezier(this.startPoint, controlPoints.get(0), controlPoints.get(1), this.endPoint, t).setHeading(lerp(startPoint.getHeading(), endPoint.getHeading(), t));
+    }
+    public boolean isBuilt() {
+        return built;
     }
 }

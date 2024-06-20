@@ -1,11 +1,15 @@
 package org.electricboy6.main;
 
+import org.electricboy6.internal.BezierSpline;
 import org.electricboy6.internal.Logger;
 import org.electricboy6.internal.PathContinuityException;
 import org.electricboy6.internal.Point2dMath;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.stream.DoubleStream;
+import java.util.stream.Stream;
 
 import static org.electricboy6.main.Constants.*;
 import static org.electricboy6.internal.Bezier.bezier;
@@ -15,6 +19,7 @@ public class PathSequence {
     private final ArrayList<Path> paths = new ArrayList<>();
     private final ArrayList<Boolean> chaining = new ArrayList<>();
     public ArrayList<Point2d> trajectory = new ArrayList<>();
+    private boolean built = false;
     public PathSequence() {}
     public PathSequence addPath(Path path, boolean chainWithNext) {
         paths.add(path);
@@ -34,6 +39,7 @@ public class PathSequence {
             }
             trajectory.addAll(paths.get(i).trajectory);
         }
+        built = true;
         return this;
     }
     public PathSequence export(String filename) {
@@ -44,30 +50,26 @@ public class PathSequence {
         return this;
     }
     private Path build(Path path, Path nextPath) {
-        ArrayList<Point2d> originalTrajectory = path.build().trajectory;
-        ArrayList<Point2d> nextPathOriginalTrajectory = nextPath.build().trajectory;
+        path.build();
+        nextPath.build();
+        //ArrayList<Point2d> originalTrajectory = path.trajectory;
+        //ArrayList<Point2d> nextPathOriginalTrajectory = nextPath.trajectory;
         ArrayList<Point2d> pathTrajectory = new ArrayList<>();
         int j = 0;
-        for(double t = 0; t < 1; t+= PATH_COMPUTE_ACCURACY) {
-            if(j < ((1 / PATH_COMPUTE_ACCURACY) - PATH_LOOKAHEAD_PERCENTAGE)) {
+        for(double t = 0; t < 1; t += PATH_COMPUTE_ACCURACY) {
+            if(j <= ((1 / PATH_COMPUTE_ACCURACY) - PATH_LOOKAHEAD_PERCENTAGE)) {
                 pathTrajectory.add(j, bezier(path.startPoint, path.controlPoints.get(0), path.controlPoints.get(1), path.endPoint, t).setHeading(lerp(path.startPoint.getHeading(), path.endPoint.getHeading(), t)));
             } else {
-                pathTrajectory.add(calcJoiningPath(pathTrajectory, t,
-                        calcPathVector(originalTrajectory, false),
-                        calcPathVector(nextPathOriginalTrajectory, true),
-                        nextPath.startPoint));
+                break;
             }
             j++;
         }
+        BezierSpline connectingPath = new BezierSpline(pathTrajectory.get(pathTrajectory.size() - 1), path.endPoint, path, nextPath)
+                .build();
+        pathTrajectory.addAll(connectingPath.trajectory); // TODO: get the bezier spline integration
         pathTrajectory.add(path.endPoint);
         path.trajectory = pathTrajectory;
         return path;
-    }
-    private Point2d calcJoiningPath(ArrayList<Point2d> trajectory, double t, Vector2d thisPath, Vector2d nextPath, Point2d nextPathStart) {
-        return bezier(trajectory.get(trajectory.size() - 1),
-                Point2dMath.add(vectorToPoint2d(thisPath), trajectory.get(trajectory.size() - 1)),
-                Point2dMath.add(vectorToPoint2d(nextPath), nextPathStart),
-                nextPathStart, t);
     }
     private Vector2d calcPathVector(ArrayList<Point2d> trajectory, boolean start) {
         int percentage;
@@ -91,5 +93,8 @@ public class PathSequence {
     }
     private double lerp(double min, double max, double t) {
         return (min + ((max - min) * t * t));
+    }
+    public boolean isBuilt() {
+        return built;
     }
 }
